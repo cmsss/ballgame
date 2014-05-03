@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <meta charset="utf-8">
+	    <title>Simple</title>
+		<link href = "css/side.css" rel = "stylesheet"/>
+		<link href = "css/moving.css" rel = "stylesheet" />
+		<script type = "text/javascript" src = "js/top.js"></script>
+		<script type = "text/javascript" src = "js/game.js"></script>
+		<script type = "text/javascript" src = "js/login.js"></script>
+		<script type = "text/javascript" src = "js/allAjax.js"></script>
+	</head>
+	<body onload = "init()">
+	    <audio id = "bgMusic" src = "music/night.wav" autoplay = "true" loop = "true" >Your browser didn't support the audio tag.</audio>
+	    <center>
+		    <div id = "main">
+		        <canvas id = "myCanvas" width = "1100" height = "270"></canvas>
+				<div id = "myLogin" class = "hideSth">
+				    <input type = "button" value = "Login" onclick = "myLog()" />
+					<input type = "button" value = "Register" onclick = "myReg()" />
+					<input type = "button" value = "Pass by" onclick = "myPass()" />
+				</div>
+				
+				<div id = "logList" height = "100" class = "hideSth">
+				    <form id = "logForm" action = "logback.php" method = "post">
+					    <span>ID：</span>
+						<input type = "text" id = "log_username" name = "log_username" class = "inputTxt" placeholder = "上限12字符" maxlength = "12"/>
+						<span>Password：</span>
+						<input type = "password" id = "log_password" name = "log_password" class = "inputTxt" placeholder = "上限12字符" maxlength = "12" />
+						<input type = "button" id = "log_submit" name = "log_submit" value = "Submit" onclick = "logSend()" />
+						<p id = "logAlarm"></p>
+					</form>
+				</div>
+				
+				<div id = "regList" height = "100" class = "hideSth">
+				    <form id = "regForm" action = "regback.php" method = "post">
+					    <span>ID：</span>
+						<input type = "text" id = "reg_username" name = "reg_username" class = "inputTxt" placeholder = "上限12字符, 中英或数字" maxlength = "12"/>
+						<span>Password：</span>
+						<input type = "password" id = "reg_password" name = "reg_password" class = "inputTxt" placeholder = "上限12字符, 英文或数字" maxlength = "12" />
+						<span>Nickname：</span>
+						<input type = "text" maxlength = "16" id = "reg_nickname" name = "reg_nickname" class = "inputTxt" placeholder = "上限16字符, 字符不限" maxlength = "16"/>
+						<input type = "button" id = "reg_submit" name = "reg_submit" value = "Submit" onclick = "regSend()" />
+						<p id = "regAlarm">注：受utf-8编码所限，一个汉字等于3个字符</p>
+					</form>
+				</div>
+				
+				<div id = "welcomeList" class = "hideSth">
+					<span id = "welStr">Welcome! </span>
+					<span id = "welNickname" onclick = "callNewNick()"></span>
+					<span id = "welHighestScore"></span>
+				</div>
+				
+				<div id = "changeNickname" class = "hideSth">
+					<form id = "newNickForm" action = "newnickback.php" method = "post">
+					    <span>New nickname: </span>
+					    <input type = "text" id = "new_nickname" name = "new_nickname" class = "inputTxt" placeholder = "上限16字符" maxlength = "16" />
+					    <input type = "button" id = "newnick_submit" name = "newnick_submit" value = "Submit" onclick = "newnickSend()" />
+						<p id = "newnickAlarm"></p>
+					</form>
+				</div>
+				
+				<div id = "congratsList" class = "hideSth">
+				    <p id = "congratsAlarm"></p>
+				</div>
+				
+				<div id = "middle">
+					<canvas id = "myCan" width = "780" height = "400"></canvas>
+					<div id = "side">
+						<input id = "myBtn" type = "button" onclick = "start_()" class = "enpress" value = "Start"><br />
+						<center>
+							<form id = "scoreForm" action = "logback.php" method = "post">      <!-- submit the score -->
+								<input type = "text" id = "score" name = "score" />
+								<input type = "button" id = "score_submit" name = "score_submit" onclick = "scoreSend()"/>
+							</form>
+							<form id = "testIshere" action = "ishereback.php" method = "post">
+								<input type = "button" id = "ishereButton" name = "ishereButton" onclick = "ishereSend()" />
+							</form>
+							<form id = "getRanking" action = "rankingback.php" method = "post">
+							    <input type = "button" id = "rankingButton" name = "rankingButton" onclick = "rankingSend()" />
+							</form>
+							<form id = "starFallForm">
+							    <input type = "button" id = "starFallButton" value = "fallingStar" onclick = "showStar()" />
+							</form>
+							<div id = "Times">
+								<input type = "text" id = "H" value = "00" onfocus = "this.blur()"/><span>: </span>
+								<input type = "text" id = "M" value = "00" onfocus = "this.blur()"/><span>: </span>
+								<input type = "text" id = "S" value = "00" onfocus = "this.blur()"/>
+							</div>
+							<div id = "musicBox" onclick = "switchMusic()"><img id = "musicImg" src = "img/musicOn.png" /></div>
+						</center>
+					</div>
+					<div style = "clear:both;"></div>
+				</div>
+				<div style = "clear:both;"></div>
+				<div id = "rankTitle">
+				    <h2>Ranking</h2>
+				</div>
+				<div id = "myRank">
+				    <div id = "D1">
+				        <img id = "imgSun" src = "img/sun.png" />
+					    <input type = "text" id = "sunName" onfocus = "this.blur()"/><input type = "text" id = "sunScore" onfocus = "this.blur()"/>
+					</div>
+					<div id = "D2">
+                        <img id = "imgMoon" src = "img/moon.png" />
+					    <input type = "text" id = "moonName" onfocus = "this.blur()"/><input type = "text" id = "moonScore" onfocus = "this.blur()"/>
+					</div>
+					<div id = "D3">
+					    <img id = "imgStar" src = "img/star.png" />
+					    <input type = "text" id = "starName" onfocus = "this.blur()"/><input type = "text" id = "starScore" onfocus = "this.blur()"/>
+					</div>
+					<div id = "D4">
+					    <img id = "imgGhost1" src = "img/ghost.png" />
+						<input type = "text" id = "ghostName1" onfocus = "this.blur()"/><input type = "text" id = "ghostScore1" onfocus = "this.blur()"/>
+					</div>
+					<div id = "D5">
+					    <img id = "imgGhost2" src = "img/ghost.png" />
+						<input type = "text" id = "ghostName2" onfocus = "this.blur()"/><input type = "text" id = "ghostScore2" onfocus = "this.blur()"/>
+					</div><br />
+				</div>
+				
+				<div id = "star0" class = "allStar">★</div><div id = "star1" class = "allStar">★</div>
+				<div id = "star2" class = "allStar">★</div><div id = "star3" class = "allStar">★</div>
+				<div id = "star4" class = "allStar">★</div><div id = "star5" class = "allStar">★</div>
+				<div id = "star6" class = "allStar">★</div><div id = "star7" class = "allStar">★</div>
+				<div id = "star8" class = "allStar">★</div><div id = "star9" class = "allStar">★</div>
+				<div id = "star10" class = "allStar">★</div><div id = "star11" class = "allStar">★</div>
+				<div id = "star12" class = "allStar">★</div><div id = "star13" class = "allStar">★</div>
+				<div id = "star14" class = "allStar">★</div><div id = "star15" class = "allStar">★</div>
+				<div id = "star16" class = "allStar">★</div><div id = "star17" class = "allStar">★</div>
+				<div id = "star18" class = "allStar">★</div><div id = "star19" class = "allStar">★</div>
+				<div id = "star20" class = "allStar">★</div><div id = "star21" class = "allStar">★</div>
+				<div id = "star22" class = "allStar">★</div><div id = "star23" class = "allStar">★</div>
+				<div id = "star24" class = "allStar">★</div><div id = "star25" class = "allStar">★</div>
+				<div id = "star26" class = "allStar">★</div><div id = "star27" class = "allStar">★</div>
+				<div id = "star28" class = "allStar">★</div><div id = "star29" class = "allStar">★</div>
+				<div id = "star30" class = "allStar">★</div><div id = "star31" class = "allStar">★</div>
+				<div id = "star32" class = "allStar">★</div><div id = "star33" class = "allStar">★</div>
+				<div id = "star34" class = "allStar">★</div><div id = "star35" class = "allStar">★</div>
+				<div id = "star36" class = "allStar">★</div><div id = "star37" class = "allStar">★</div>
+				<div id = "star38" class = "allStar">★</div><div id = "star39" class = "allStar">★</div>
+				<div id = "star40" class = "allStar">★</div><div id = "star41" class = "allStar">★</div>
+				<div id = "star42" class = "allStar">★</div><div id = "star43" class = "allStar">★</div>
+				<div id = "star44" class = "allStar">★</div><div id = "star45" class = "allStar">★</div>
+				<div id = "star46" class = "allStar">★</div><div id = "star47" class = "allStar">★</div>
+				<div id = "star48" class = "allStar">★</div><div id = "star49" class = "allStar">★</div>
+				<div id = "star50" class = "allStar">★</div>
+				
+				<footer>
+				    <canvas id = "myFoot" width = "1100" height = "90"></canvas>
+				</footer>
+			</div>
+		</center>
+	</body>
+</html>

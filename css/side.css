@@ -1,0 +1,119 @@
+
+body {margin:0px; background:url(../img/silverBg.jpg) repeat;}
+
+#main {width:1100px; padding:0px; background:url(../img/mainBg.jpg) repeat;}    /* restrict the width of the whole design */
+
+#myCanvas {margin:0px; padding:0px; overflow:0px; display:block;}
+
+#myCan {float:left; display:block;}
+
+@font-face { font-family:Ske;
+	         src:url("../font/Eng/sketchy.ttf") format("opentype");    /* create a new style of text: Ske */
+}
+
+#myBtn {width:150px; height:70px; border-radius:10px; cursor:pointer;
+        font-size:35px; font-family:Ske;}        /* the START button of the Game */ 
+
+/* when the START button was pressed or loosed */
+.enpress {border:1px solid rgba(250, 200, 20, 0.8); background-color:rgba(250, 200, 20, 0.8); color:black;
+          box-shadow:6px 6px 4px 0 rgba(0, 0, 0, 0.5); margin-top:50px; margin-left:10px; margin-bottom:80px;}
+.dispress {border:1px solid rgba(250, 200, 20, 0.5); background-color:rgba(250, 200, 20, 0.5); color:#535252;
+          box-shadow:2px 2px 4px 0px rgba(0, 0, 0, 0.7); margin-top:53px; margin-left:13px; margin-bottom:77px;}
+
+#side {float:right; width:310px; height:395px;}    /* the div which contains START button and the Time counter */
+#middle {background-color:rgba(80, 15, 55, 0.93);}
+
+#scoreForm, #testIshere, #getRanking, #starFallForm {display:none;}
+
+#Times {cursor:default;}
+#Times input {width:60px; height:70px; font-size:50px; font-family:Ske; border:none; background-color:rgba(0, 0, 0, 0); color:white; cursor:default;}  /* the Time counter's input */
+#Times span {font-size:50px; font-family:Ske; color:white;}    /* Time counter's ":" */
+
+#musicBox {height:30px; width:40px; margin-top:60px; cursor:pointer; color:white;}
+#musicImg {height:30px; width:30px;}
+
+#myLogin {width:1100px; height:72px; padding-top:4px; background-color:#4f0e36; margin-top:0px; margin-bottom:0px; overflow:hidden;}
+#myLogin input{width:170px; height:50px; border-radius:9px; cursor:pointer; margin:10px 40px 0px 40px;
+            font-size:27px; font-family:Ske; box-shadow:2px 2px 2px 0px #555555;
+			
+		    -webkit-transition-property:background-color,color,border;
+			-webkit-transition-duration:1.2s;
+			-webkit-transition-timing-function:ease-in-out;
+			
+			-moz-transition-property:background-color,color,border;
+			-moz-transition-duration:1.2s;
+			-moz-transition-timing-function:ease-in-out;
+			
+			-o-transition-property:background-color,color,border;
+			-o-transition-duration:1.2s;
+			-o-transition-timing-function:ease-in-out;
+			
+			-ms-transition-property:background-color,color,border;
+			-ms-transition-duration:1.2s;
+			-ms-transition-timing-function:ease-in-out; 
+			
+			transition-property:background-color,color,border;
+			transition-duration:1.2s;
+			transition-timing-function:ease-in-out;
+			}
+
+#myLogin input:hover {background-color:#a6155d; border:#825b6a; color:white;}
+
+#logList {background-color:#4f0e36; height:83px; margin:0px; overflow:hidden;}
+#logList span {font-family:Comic Sans MS; font-size:20px; margin:0px; color:white;}
+#logForm {padding-top:20px;}
+.inputTxt {margin-right:40px; height:22px; width:150px; border-radius:3px;}    /* logForm and regForm's input(text type) style */
+
+#regList {background-color:#4f0e36; height:83px; margin:0px; overflow:hidden;}
+#regList span {font-family:Comic Sans MS; font-size:20px; color:white;}
+#regForm {padding-top:20px;}
+#logAlarm, #regAlarm, #newnickAlarm {margin-top:6px; color:#fccffc; font-family:Microsoft YaHei;}
+
+#log_submit, #reg_submit, #newnick_submit {font-family:Ske; font-size:21px; width:150px; height:32px; border-radius:5px; margin-right:0px;
+    background-color:#a6155d; border:#a6a55d; cursor:pointer; padding-top:0px; line-height:27px; box-shadow:1px 1px 2px 0px #333333; margin-top:0px;}
+#log_submit:hover {color:white;}
+#reg_submit:hover {color:white;}
+#newnick_submit:hover {color:white;}
+
+#welcomeList {width:1100px; height:41px; padding-top:6px; background-color:#4f0e36; margin-top:0px; margin-bottom:0px; overflow:hidden;
+        font-family:Verdana; font-size:25px; font-weight:400;}
+    #welStr {color:#fbe7fb;}
+	#welNickname {color:#fbbffb; margin-right:27px; cursor:pointer; font-family:Microsoft YaHei;}
+	#welHighestScore {color:#fbe7fb;}
+
+#changeNickname {width:1100px; height:83px; background-color:#4f0e36; margin:0px; overflow:hidden;}
+#changeNickname span {font-family:Comic Sans MS; font-size:20px; color:white;}
+#newNickForm {padding-top:20px;}
+
+#congratsList {background-color:#4f0e36; height:83px; margin:0px; overflow:hidden;}
+#congratsList p {color:#fccffc; font-size:41px; margin-top:10px; font-family:Microsoft YaHei;}
+
+#rankTitle {width:1100px; height:75px; background-color:#4f0e36; margin:0px; overflow:hidden; padding-top:7px;}
+#rankTitle h2 {font-size:50px; font-family:Ske; color:white; margin:0px;}
+
+#myRank {padding-top:20px; background:rgba(80, 14, 55, 0.7); cursor:default;}
+#myRank input {cursor:default;}
+
+#D1 {width:770px; padding:0px; height:90px; margin:0px;}
+#imgSun {height:70px; width:70px; float:left;}
+#sunName {height:60px; width:360px; font-family:SimHei; font-size:43px; margin-right:20px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+#sunScore {height:60px; width:310px; font-family:Ske; font-size:43px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+
+#D2 {width:700px; padding:0px; height:70px; margin:0px;}
+#imgMoon {height:45px; width:45px; float:left;}
+#moonName {height:50px; width:320px; font-family:SimHei; font-size:37px; margin-right:20px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+#moonScore {height:50px; width:290px; font-family:Ske; font-size:37px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+
+#D3 {width:630px; padding:0px; height:60px;}
+#imgStar {height:40px; width:40px; float:left;}
+#starName {height:33px; width:280px; font-family:SimHei; font-size:31px; margin-right:20px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+#starScore {height:33px; width:270px; font-family:Ske; font-size:31px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+
+#D4, #D5 {width:570px; padding:0px; height:50px;}
+#imgGhost1, #imgGhost2 {height:30px; width:30px; float:left;}
+#ghostName1, #ghostName2 {height:30px; width:240px; font-family:SimHei; font-size:27px; margin-right:20px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+#ghostScore1, #ghostScore2 {height:30px; width:260px; font-family:Ske; font-size:27px; background-color:rgba(0, 0, 0, 0); border:0px; color:white;}
+
+.allStar {position:absolute;}
+
+#myFoot {margin:0px; overflow:hidden; padding:0px; border:0px; display:block;}
