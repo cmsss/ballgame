@@ -3,19 +3,26 @@
 	session_start();
 	function login($log_username, $log_password)    //登陆 Login
 	{
-		$sql= "SELECT * FROM `player` WHERE `username` = \"".$log_username."\" AND password = \"".$log_password."\"";
-		$result = mysql_query($sql);
-		if($row = mysql_fetch_array($result))
+		if(!preg_match("/^[\x{4e00}-\x{9fa5}A-Za-z\d]+$/u" , $log_username))
 		{
-			$_SESSION['id'] = $row['id'];
-			$_SESSION['username'] = $row['username'];
-			$_SESSION['nickname'] = recover_keyword($row['nickname']);
-			$_SESSION['score'] = $row['score'];
-			$_SESSION['ranking'] = $row['ranking'];
+			echo "<div><span>w</span><span>您输入的格式不正确！ID只允许中英文,数字</span></div>";
 		}
-		else    //若登陆失败，返回错误信息
+		else
 		{
-		    echo "<div><span>w</span><span>登录失败，ID或密码错误</span></div>";
+			$sql= "SELECT * FROM `player` WHERE `username` = \"".$log_username."\" AND password = \"".$log_password."\"";
+			$result = mysql_query($sql);
+			if($row = mysql_fetch_array($result))
+			{
+				$_SESSION['id'] = $row['id'];
+				$_SESSION['username'] = $row['username'];
+				$_SESSION['nickname'] = recover_keyword($row['nickname']);
+				$_SESSION['score'] = $row['score'];
+				$_SESSION['ranking'] = $row['ranking'];
+			}
+			else    //若登陆失败，返回错误信息
+			{
+				echo "<div><span>w</span><span>登录失败，ID或密码错误</span></div>";
+			}
 		}
 	}
 	
@@ -181,6 +188,9 @@
 		}
 		return true;
 	}
+	
+	
+	
 	
 	function check_password($password)		//检查密码格式
 	{
